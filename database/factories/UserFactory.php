@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -23,7 +22,7 @@ $factory->define(App\User::class, function () {
         'email' => 'flaat@kuijpers.com',
         'email_verified_at' => now(),
         'role' => 'admin',
-        'password' => $password ?: $password = bcrypt('F82213kI'),
+        'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => Str::random(10),
     ];
 });
