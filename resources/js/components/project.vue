@@ -136,7 +136,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <template v-if="createForm == true">
+                        <template v-if="createForm === true">
                             <h4 class="modal-title">
                                 Creeër een nieuw Project !!
                             </h4>
@@ -153,7 +153,7 @@
                     <div class="modal-body">
                         <form method="post" action="/api/v1/projecten" class="" role="form" @submit.prevent="onSubmitEdit" @keydown="editForm.errors.clear($event.target.name)" @keydown.enter.prevent="moveOnEnter">
 
-                            <template v-if="createForm == true">
+                            <template v-if="createForm === true">
                             </template>
                             <template v-else="createForm">
                                 <input type="hidden" name="_method" value="patch">
@@ -242,7 +242,7 @@
 
                             <div class="modal-footer">
 
-                                <template v-if="createForm == true">
+                                <template v-if="createForm === true">
                                     <button class="btn btn-secondary" @click.prevent="closeEditForm">Sluit</button>
                                     <button class="btn btn-primary" :disabled="editForm.errors.any()">Creëer</button>
                                 </template>
@@ -306,7 +306,7 @@
                 this.usersInProjecten.push(user);
             })
             .leaving((user) => {
-                this.usersInProjecten = this.usersInProjecten.filter(u => u != user)
+                this.usersInProjecten = this.usersInProjecten.filter(u => u !== user)
             })
             .listen('openProject', (e) => {
 
@@ -376,7 +376,7 @@
             },
 
             onSubmitEdit() {
-                if (this.createForm == true) {
+                if (this.createForm === true) {
                     this.editForm.post('/api/v1/projecten')
                         .then(response => {
                         this.closeEditForm();

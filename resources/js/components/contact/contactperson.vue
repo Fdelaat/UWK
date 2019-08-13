@@ -99,7 +99,7 @@
                 <div class="modal-body">
                     <form method="post" action="/api/v1/contactpersonen" class="" role="form" @submit.prevent="onSubmitEdit" @keydown="editForm.errors.clear($event.target.name)" @keydown.enter.prevent="moveOnEnter">
 
-                        <template v-if="createForm == true">
+                        <template v-if="createForm === true">
                         </template>
                         <template v-else="createForm">
                             <input type="hidden" name="_method" value="patch">
@@ -333,7 +333,7 @@
                    id: contactperson.contactPerson[0].id
                });
 
-               if (searchIdx ==-1) {
+               if (searchIdx === -1) {
                    let searchId = _.findLastIndex(this.contactpersons,) < this.pagination.per_page -1;
                    if (searchId == true){
                        this.getContactpersons();
@@ -347,10 +347,10 @@
                    id: contactperson.contactPerson[0].id
                });
 
-               if (searchIdx ==-1) {
+               if (searchIdx === -1) {
                }
                else {
-                   let searchId = _.findIndex(this.contactpersons, function(o) { return o.id == contactperson.contactPerson[0].id; });
+                   let searchId = _.findIndex(this.contactpersons, function(o) { return o.id === contactperson.contactPerson[0].id; });
                    this.contactpersons.splice(searchId,1,contactperson.contactPerson[0]);
                }
            },
@@ -359,7 +359,7 @@
                let searchIdx = _.findIndex(this.contactpersons, {
                    id: contactperson.contactPerson[0].id
                });
-               if (searchIdx ==-1) {
+               if (searchIdx === -1) {
                }
                else {
                    this.getContactpersons();
@@ -385,7 +385,7 @@
            },
 
            onSubmitEdit() {
-               if (this.createForm == true) {
+               if (this.createForm === true) {
                    this.editForm.post('/api/v1/contactpersonen')
                        .then(response => {
                            this.closeEditForm();

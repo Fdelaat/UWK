@@ -75,7 +75,7 @@
             <div class="modal-content">
                 <div class="modal-header">
 
-                    <template v-if="createForm == true">
+                    <template v-if="createForm === true">
                         <h4 class="modal-title">
                             Creeër een nieuw bedrijf !!
                         </h4>
@@ -92,7 +92,7 @@
                 <div class="modal-body">
                     <form method="post" action="/api/v1/bedrijven" class="" role="form" @submit.prevent="onSubmitEdit" @keydown="editForm.errors.clear($event.target.name)" @keydown.enter.prevent="moveOnEnter">
 
-                        <template v-if="createForm == true">
+                        <template v-if="createForm === true">
                         </template>
                         <template v-else="createForm">
                             <input type="hidden" name="_method" value="patch">
@@ -430,7 +430,7 @@
             },
 
             onSubmitEdit() {
-                if (this.createForm == true) {
+                if (this.createForm === true) {
                     this.editForm.post('/api/v1/bedrijven')
                         .then(response => {
                             this.closeEditForm();

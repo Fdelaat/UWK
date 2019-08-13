@@ -582,7 +582,7 @@ __webpack_require__.r(__webpack_exports__);
     onSubmitEdit: function onSubmitEdit() {
       var _this5 = this;
 
-      if (this.createForm == true) {
+      if (this.createForm === true) {
         this.editForm.post('/api/v1/bedrijven').then(function (response) {
           _this5.closeEditForm();
 
@@ -956,7 +956,7 @@ __webpack_require__.r(__webpack_exports__);
         id: contactperson.contactPerson[0].id
       });
 
-      if (searchIdx == -1) {
+      if (searchIdx === -1) {
         var searchId = _.findLastIndex(this.contactpersons) < this.pagination.per_page - 1;
 
         if (searchId == true) {
@@ -969,9 +969,9 @@ __webpack_require__.r(__webpack_exports__);
         id: contactperson.contactPerson[0].id
       });
 
-      if (searchIdx == -1) {} else {
+      if (searchIdx === -1) {} else {
         var searchId = _.findIndex(this.contactpersons, function (o) {
-          return o.id == contactperson.contactPerson[0].id;
+          return o.id === contactperson.contactPerson[0].id;
         });
 
         this.contactpersons.splice(searchId, 1, contactperson.contactPerson[0]);
@@ -982,7 +982,7 @@ __webpack_require__.r(__webpack_exports__);
         id: contactperson.contactPerson[0].id
       });
 
-      if (searchIdx == -1) {} else {
+      if (searchIdx === -1) {} else {
         this.getContactpersons();
       }
     },
@@ -1005,7 +1005,7 @@ __webpack_require__.r(__webpack_exports__);
     onSubmitEdit: function onSubmitEdit() {
       var _this5 = this;
 
-      if (this.createForm == true) {
+      if (this.createForm === true) {
         this.editForm.post('/api/v1/contactpersonen').then(function (response) {
           _this5.closeEditForm();
 
@@ -1308,10 +1308,10 @@ __webpack_require__.r(__webpack_exports__);
         id: productgroups.productGroup[0].id
       });
 
-      if (searchIdx == -1) {
+      if (searchIdx === -1) {
         var searchId = _.findLastIndex(this.productgroups) < this.pagination.per_page - 1;
 
-        if (searchId == true) {
+        if (searchId === true) {
           this.getContactProductgroups();
         }
       }
@@ -1321,9 +1321,9 @@ __webpack_require__.r(__webpack_exports__);
         id: productgroups.productGroup[0].id
       });
 
-      if (searchIdx == -1) {} else {
+      if (searchIdx === -1) {} else {
         var searchId = _.findIndex(this.productgroups, function (o) {
-          return o.id == productgroups.productGroup[0].id;
+          return o.id === productgroups.productGroup[0].id;
         });
 
         this.productgroups.splice(searchId, 1, productgroups.productGroup[0]);
@@ -1334,7 +1334,7 @@ __webpack_require__.r(__webpack_exports__);
         id: productgroups.productGroup[0].id
       });
 
-      if (searchIdx == -1) {} else {
+      if (searchIdx === -1) {} else {
         this.getContactProductgroups();
       }
     },
@@ -2781,7 +2781,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.usersInProjecten.push(user);
     }).leaving(function (user) {
       _this.usersInProjecten = _this.usersInProjecten.filter(function (u) {
-        return u != user;
+        return u !== user;
       });
     }).listen('openProject', function (e) {});
   },
@@ -2842,7 +2842,7 @@ __webpack_require__.r(__webpack_exports__);
     onSubmitEdit: function onSubmitEdit() {
       var _this4 = this;
 
-      if (this.createForm == true) {
+      if (this.createForm === true) {
         this.editForm.post('/api/v1/projecten').then(function (response) {
           _this4.closeEditForm();
 
@@ -3721,7 +3721,7 @@ var render = function() {
                 "div",
                 { staticClass: "modal-header" },
                 [
-                  _vm.createForm == true
+                  _vm.createForm === true
                     ? [
                         _c("h4", { staticClass: "modal-title" }, [
                           _vm._v(
@@ -3795,7 +3795,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm.createForm == true
+                    _vm.createForm === true
                       ? void 0
                       : [
                           _c("input", {
@@ -5004,7 +5004,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm.createForm == true
+                    _vm.createForm === true
                       ? void 0
                       : [
                           _c("input", {
@@ -5860,7 +5860,7 @@ var render = function() {
                 "div",
                 { staticClass: "modal-header" },
                 [
-                  _vm.createForm == true
+                  _vm.createForm === true
                     ? [
                         _c("h4", { staticClass: "modal-title" }, [
                           _vm._v(
@@ -5934,7 +5934,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm.createForm == true
+                    _vm.createForm === true
                       ? void 0
                       : [
                           _c("input", {
@@ -6136,7 +6136,7 @@ var render = function() {
                       "div",
                       { staticClass: "modal-footer" },
                       [
-                        _vm.createForm == true
+                        _vm.createForm === true
                           ? [
                               _c(
                                 "button",
@@ -7929,7 +7929,7 @@ var render = function() {
                 "div",
                 { staticClass: "modal-header" },
                 [
-                  _vm.createForm == true
+                  _vm.createForm === true
                     ? [
                         _c("h4", { staticClass: "modal-title" }, [
                           _vm._v(
@@ -8003,7 +8003,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm.createForm == true
+                    _vm.createForm === true
                       ? void 0
                       : [
                           _c("input", {
@@ -8573,7 +8573,7 @@ var render = function() {
                       "div",
                       { staticClass: "modal-footer" },
                       [
-                        _vm.createForm == true
+                        _vm.createForm === true
                           ? [
                               _c(
                                 "button",

@@ -70,7 +70,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <template v-if="createForm == true">
+                    <template v-if="createForm === true">
                         <h4 class="modal-title">
                             Creeër een nieuwe Productgroep !!
                         </h4>
@@ -87,7 +87,7 @@
                 <div class="modal-body">
                     <form method="post" action="/api/v1/productgroepen" class="" role="form" @submit.prevent="onSubmitEdit" @keydown="editForm.errors.clear($event.target.name)" @keydown.enter.prevent="moveOnEnter">
 
-                        <template v-if="createForm == true">
+                        <template v-if="createForm === true">
                         </template>
                         <template v-else="createForm">
                             <input type="hidden" name="_method" value="patch">
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <template v-if="createForm == true">
+                            <template v-if="createForm === true">
                                 <button class="btn btn-secondary" @click.prevent="closeEditForm">Sluit</button>
                                 <button class="btn btn-primary" :disabled="editForm.errors.any()">Creëer</button>
                             </template>
@@ -262,9 +262,9 @@
                     id: productgroups.productGroup[0].id
                 });
 
-                if (searchIdx ==-1) {
+                if (searchIdx === -1) {
                     let searchId = _.findLastIndex(this.productgroups,) < this.pagination.per_page -1;
-                    if (searchId == true){
+                    if (searchId === true){
                         this.getContactProductgroups();
                     }
                 }
@@ -275,10 +275,10 @@
                     id: productgroups.productGroup[0].id
                 });
 
-                if (searchIdx ==-1) {
+                if (searchIdx === -1) {
                 }
                 else {
-                    let searchId = _.findIndex(this.productgroups, function(o) { return o.id == productgroups.productGroup[0].id; });
+                    let searchId = _.findIndex(this.productgroups, function(o) { return o.id === productgroups.productGroup[0].id; });
                     this.productgroups.splice(searchId,1,productgroups.productGroup[0]);
                 }
             },
@@ -288,7 +288,7 @@
                     id: productgroups.productGroup[0].id
                 });
 
-                if (searchIdx ==-1) {
+                if (searchIdx === -1) {
                 }
                 else {
                     this.getContactProductgroups();
