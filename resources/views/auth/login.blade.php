@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row align-items-center justify-content-center" style="height: 70vh">
         <div class="col-md-6 col-sm-8">
-            <div class="card">
+            <div class="card shadow p-3 mb-5 rounded">
 
                 <div class="card-body">
                     <div class="row">
