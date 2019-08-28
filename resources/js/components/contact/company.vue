@@ -7,7 +7,7 @@
             <div class="card-header mb-1">
                 <div class="row justify-content-around">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2 float-left">
-                        <h5 class="font-weight-bold py-1 my-0">Bedrijven</h5>
+                        <h5 class="font-weight-bold py-1 my-0 text-muted">Bedrijven</h5>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
                         <uwk-search :callback=search placeholder="Zoek bedrijf.." nameEvent="contactCompany-search"></uwk-search>
@@ -22,7 +22,7 @@
             <div class="card-body" id="company-card">
                 <div class="card-group d-flex flex-sm-row flex-column justify-content-center">
                     <div v-for="company in companies" :key="company.id">
-                        <div class="card mb-3 ml-2 mr-2 flex-fill">
+                        <div class="card mb-5 ml-2 mr-2 flex-fill shadow rounded">
                             <div class="card-header mb-1">
                                 <h6>{{ company.name }}</h6>
                             </div>
@@ -184,7 +184,7 @@
                             <label for="country" class="col-md-4 col-form-label">Land</label>
 
                             <div class="col-md-8">
-                                <select  v-model.trim="editForm.country" id="country" class="custom-select" :class="{'is-invalid' : editForm.errors.has('country')}">
+                                <select id="country" class="custom-select" :class="{'is-invalid' : editForm.errors.has('country')}" v-model.trim="editForm.country">
                                     <option :value="null" value="">Selecteer een land</option>
                                     <option v-for="country in countries" value="" :value="country" :key="country.id">{{ country }}</option>
                                 </select>

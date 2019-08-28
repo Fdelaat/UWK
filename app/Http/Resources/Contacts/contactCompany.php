@@ -15,7 +15,7 @@ class contactCompany extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => (int) $this->id,
+            'id' => $this->id,
             'name' => $this->companies_name,
             'streetName' => $this->companies_streetName,
             'streetNumber' => $this->companies_streetNumber,

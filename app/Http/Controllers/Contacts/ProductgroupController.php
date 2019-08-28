@@ -12,6 +12,7 @@ use App\Events\Contacts\ProductGroupDestroy;
 use App\Http\Requests\Contacts\StoreProductGroups;
 use App\Http\Requests\Contacts\UpdateProductGroups;
 use App\Http\Resources\Contacts\contactProductgroupsCollection;
+use Spatie\QueryBuilder\QueryBuilder;
 
 
 class ProductgroupController extends Controller
@@ -29,7 +30,10 @@ class ProductgroupController extends Controller
 
     public function index()
     {
-        $response = new contactProductgroupsCollection(contactProductgroups::orderBy('productgroup_name', 'asc')->paginate(10));
+        $response = new contactProductgroupsCollection(QueryBuilder::for(contactProductgroups::class)
+            ->defaultSort('productgroup_name')
+            ->paginate(10)
+        );
 
         if ( ! $response)
         {

@@ -6,6 +6,8 @@ use App\contactPerson;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\AllowedSort;
+use Spatie\QueryBuilder\QueryBuilder;
 use App\Events\Contacts\PersonSaved;
 use App\Events\Contacts\PersonDestroy;
 use App\Events\Contacts\PersonUpdated;
@@ -28,7 +30,16 @@ class contactPersonController extends Controller {
 
     public function index()
     {
-        $response = new contactPersonCollection(contactPerson::orderBy('contactPeople_firstName', 'asc')->paginate(10));
+        $response = new contactPersonCollection(QueryBuilder::for(contactPerson::class)
+            ->defaultSort('contactPeople_firstName')
+            ->allowedSorts([
+                AllowedSort::field('firstName', 'contactPeople_firstName'),
+                AllowedSort::field('phoneNumber', 'contactPeople_phoneNumber'),
+                AllowedSort::field('mobilePhoneNumber', 'contactPeople_mobilePhoneNumber'),
+                AllowedSort::field('email', 'contactPeople_email')])
+            ->allowedIncludes(['company'])
+            ->paginate(10)
+        );
 
         if ( ! $response)
         {
@@ -51,6 +62,7 @@ class contactPersonController extends Controller {
             'contactPeople_phoneNumber' => Request('phoneNumber'),
             'contactPeople_mobilePhoneNumber' => Request('mobilePhoneNumber'),
             'contactPeople_email' => Request('email'),
+            'company_id' => Request('company.id'),
         ]);
         broadcast(new PersonSaved($contactPerson))->toOthers();
 
@@ -69,6 +81,7 @@ class contactPersonController extends Controller {
             'contactPeople_phoneNumber' => Request('phoneNumber'),
             'contactPeople_mobilePhoneNumber' => Request('mobilePhoneNumber'),
             'contactPeople_email' => Request('email'),
+            'company_id' => Request('company.id'),
         ])->save();
         broadcast(new PersonUpdated($contactPerson))->toOthers();
 

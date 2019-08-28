@@ -60,13 +60,6 @@
                                     {{ __('Login') }}
                                 </button>
                             </div>
-                            <div class="col-md-3 col-sm-3 mb-md-0">
-                                @if (Route::has('password.request'))
-                                    <a class="d-inline-block mt-0" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
                         </div>
                     </form>
                 </div>

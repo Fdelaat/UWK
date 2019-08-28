@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
     <uwk-alert :type="alertType" timeout="3000" id="productgroup" :message="alertMessage"></uwk-alert>
     <div class="col-md-12 col-lg-10">
-        <div class="card card-default">
+        <div class="card mb-5 ml-2 mr-2 shadow rounded">
 
             <div class="card-header">
                 <div class="row justify-content-around">

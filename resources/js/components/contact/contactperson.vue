@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
     <div class="col-md-12 col-lg-10">
         <uwk-alert :type="alertType" timeout="3000" id="contactPerson" :message="alertMessage"></uwk-alert>
-        <div class="card card-default">
+        <div class="card mb-5 ml-2 mr-2 shadow rounded">
             <div class="card-header">
                 <div class="row justify-content-around align-content-center">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2 float-left">
@@ -53,7 +53,12 @@
                                 <a :href="emailLink(contactperson.email)">{{contactperson.email}}</a>
                             </td>
                             <td style="vertical-align: middle;">
-                                Werkt bij ...
+                                <span class="text-primary" v-if="contactperson.company.id !== null ">
+                                Werkt bij {{ contactperson.company.name }}
+                                </span>
+                                <span class="text-primary" v-if="contactperson.company.id === null ">
+                                Bedrijf dient nog gekoppeld te worden!
+                                </span>
                             </td>
                             <!-- Buttons -->
                             <td>
@@ -178,14 +183,46 @@
 
                         </div>
 
+                        <!-- Company -->
+                        <template v-if="createForm === true">
+                            <div class="form-group row">
+                                <label for="storeCompany" class="col-md-4 col-form-label">Bedrijf</label>
+                                <div class="col-md-8">
+                                    <select  id="storeCompany" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model="editForm.company">
+                                        <option value="" :value="null" selected>Selecteer bedrijf..</option>
+                                        <option v-for="company in companies" :value="company.id" :key="company.id">{{ company.companies_name }}</option>
+                                    </select>
+                                    <div class="invalid-feedback" v-if="editForm.errors.has('company')" v-text="editForm.errors.get('company')"></div>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-else="createForm">
+                        <div class="form-group row">
+                            <label for="updateCompany" class="col-md-4 col-form-label">Bedrijf</label>
+                            <div class="col-md-8">
+                                <template v-if="editForm.company.id !== null">
+                                    <select  id="updateCompany" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model.trim="editForm.company.id">
+                                        <option v-for="company in companies" :value="company.id" :key="company.id">{{ company.companies_name }}</option>
+                                    </select>
+                                </template>
+                                <template v-if="editForm.company.id === null">
+                                    <select  id="updateCompany" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model="editForm.company.id">
+                                        <option value="" :value="null" selected >Selecteer bedrijf..</option>
+                                        <option v-for="company in companies" :value="company.id" :key="company.id">{{ company.companies_name }}</option>
+                                    </select>
+                                </template>
+                                <div class="invalid-feedback" v-if="editForm.errors.has('company')" v-text="editForm.errors.get('company')"></div>
+                            </div>
+                        </div>
+                        </template>
+
                         <div class="modal-footer">
 
+                            <button class="btn btn-secondary" @click.prevent="closeEditForm">Sluit</button>
                             <template v-if="createForm === true">
-                                <button class="btn btn-secondary" @click.prevent="closeEditForm">Sluit</button>
                                 <button class="btn btn-primary" :disabled="editForm.errors.any()">Creëer</button>
                             </template>
                             <template v-else="createForm">
-                                <button class="btn btn-secondary" @click.prevent="closeEditForm">Sluit</button>
                                 <button class="btn btn-warning" :disabled="editForm.errors.any()">Wijzig</button>
                             </template>
 
@@ -203,6 +240,7 @@
        data() {
            return {
                contactpersons: [],
+               companies: [],
                errors: [],
                alertMessage:{},
                alertType:{},
@@ -228,12 +266,14 @@
                    lastName: '',
                    phoneNumber: '',
                    mobilePhoneNumber: '',
-                   email: ''
+                   email: '',
+                   company: {}
                }),
            };
        },
        created(){
            this.getContactpersons();
+           this.getCompanyNames();
        },
 
        mounted() {
@@ -291,6 +331,17 @@
                    .then(response => {
                        this.contactpersons = response.data.data;
                        this.pagination = response.data.meta.pagination;
+                   })
+                   .catch( e => {
+                       this.errors.push(e)
+                   });
+           },
+
+           getCompanyNames() {
+               axios.get('/api/v1/bedrijven/namen', {
+               })
+                   .then(response => {
+                       this.companies = response.data;
                    })
                    .catch( e => {
                        this.errors.push(e)
@@ -419,6 +470,7 @@
            },
 
            moveOnEnter() {
+
            }
        },
 

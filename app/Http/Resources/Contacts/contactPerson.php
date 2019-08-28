@@ -24,6 +24,7 @@ class contactPerson extends JsonResource
             'phoneNumber' => $this->contactPeople_phoneNumber,
             'mobilePhoneNumber' => $this->contactPeople_mobilePhoneNumber,
             'email' => $this->contactPeople_email,
+            'company' => new contactCompany($this->company)
         ];
     }
 }

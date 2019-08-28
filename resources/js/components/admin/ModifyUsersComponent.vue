@@ -3,7 +3,7 @@
         <uwk-alert type="success" timeout="3000" id="productgroup" message="De gebruikers rol is aangepast!"></uwk-alert>
         <div class="row" v-if="users.length">
             <div class="col-md-8">
-                <div class="card mb-3">
+                <div class="card mb-5 shadow rounded">
                     <div class="card-header">
                         <h5 class="font-weight-bold py-1 my-0">Verwijder gebruikers</h5>
                     </div>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card card-default">
+                <div class="card mb-5 shadow rounded">
                     <div class="card-header">
                         <h5 class="font-weight-bold py-1 my-0">Wijzig rol gebruiker</h5>
                     </div>

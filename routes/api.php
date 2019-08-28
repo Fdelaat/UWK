@@ -19,6 +19,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::post('/bedrijven', 'Contacts\contactCompanyController@store');
     Route::patch('/bedrijven/{id}', 'Contacts\contactCompanyController@update');
     Route::delete('/bedrijven/{id}', 'Contacts\contactCompanyController@destroy');
+    Route::get('/bedrijven/namen', 'Contacts\contactCompanyController@name');
     Route::get('/bedrijven/search', 'Contacts\contactCompanyController@search');
 
     Route::get('/contactpersonen', 'Contacts\contactPersonController@index');

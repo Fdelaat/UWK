@@ -47,7 +47,6 @@ class contactPerson extends Model
     ];
 
     protected $casts = [
-        'company_id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
@@ -57,7 +56,7 @@ class contactPerson extends Model
      */
     public function company()
     {
-        return $this->belongsTo(contactCompany::class);
+        return $this->belongsTo(contactCompany::class)->withDefault();
     }
 
 }

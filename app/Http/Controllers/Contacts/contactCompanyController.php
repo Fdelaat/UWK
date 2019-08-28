@@ -6,12 +6,14 @@ use App\contactCompany;
 use Illuminate\Http\Request;
 use Laravel\Scout\Searchable;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
 use App\Events\Contacts\CompanySaved;
 use App\Events\Contacts\CompanyUpdated;
 use App\Events\Contacts\CompanyDestroy;
 use App\Http\Requests\Contacts\StoreCompany;
 use App\Http\Requests\Contacts\UpdateCompany;
 use App\Http\Resources\Contacts\contactCompanyCollection;
+use App\Http\Resources\Contacts\contactCompany as contactCompanyResource;
 
 class contactCompanyController extends Controller
 {
@@ -30,7 +32,10 @@ class contactCompanyController extends Controller
 
     public function index()
     {
-         $response = new contactCompanyCollection(contactCompany::orderBy('companies_name', 'asc')->paginate(8));
+        $response = new contactCompanyCollection(QueryBuilder::for(contactCompany::class)
+            ->defaultSort('companies_name')
+            ->paginate(8)
+        );
 
          if ( ! $response)
          {
@@ -39,6 +44,19 @@ class contactCompanyController extends Controller
              ], 404);
          }
          return response()->json($response, 200);
+    }
+
+    public function name()
+    {
+        $response = contactCompany::all('id','companies_name')->toArray();
+
+        if ( ! $response)
+        {
+            return response()->json([
+                'error' => 'Something went wrong!'
+            ], 404);
+        }
+        return response()->json($response, 200);
     }
 
     public function store(StoreCompany $request)

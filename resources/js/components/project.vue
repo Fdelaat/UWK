@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-md-10">
-                <div class="card">
+                <div class="card mb-5 ml-1 mr-2 shadow rounded">
                     <div class="card-header">
                         <div class="row justify-content-around">
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 float-left">

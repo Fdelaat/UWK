@@ -8,6 +8,7 @@ use App\Events\openProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProjectCollection;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -21,6 +22,7 @@ class ProjectController extends Controller
     {
         $id = Auth::id();
         $user =  User::findorfail($id);
+        //$user = DB::table('users')->find($id);
 
         broadcast(new openProject($user))->toOthers();
 
@@ -29,7 +31,16 @@ class ProjectController extends Controller
 
     public function index()
     {
-        return response()->json(new ProjectCollection(Project::orderBy('name', 'asc')->paginate(1)), 200);
+        $response = new ProjectCollection(Project::findOrFail(1)->paginate(1));
+
+        if ( ! $response)
+        {
+            return response()->json([
+                'error' => 'Something went wrong!'
+            ], 404);
+        }
+
+        return response()->json($response, 200);
     }
 
     public function store(Request $request)
