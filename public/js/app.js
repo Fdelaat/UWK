@@ -855,13 +855,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -896,7 +889,10 @@ __webpack_require__.r(__webpack_exports__);
         phoneNumber: '',
         mobilePhoneNumber: '',
         email: '',
-        company: {}
+        company: {
+          id: '',
+          name: ''
+        }
       })
     };
   },
@@ -5673,177 +5669,91 @@ var render = function() {
                               "label",
                               {
                                 staticClass: "col-md-4 col-form-label",
-                                attrs: { for: "updateCompany" }
+                                attrs: { for: "Company" }
                               },
                               [_vm._v("Bedrijf")]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "col-md-8" },
-                              [
-                                _vm.editForm.company.id !== null
-                                  ? [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model.trim",
-                                              value: _vm.editForm.company.id,
-                                              expression: "editForm.company.id",
-                                              modifiers: { trim: true }
-                                            }
-                                          ],
-                                          staticClass: "custom-select",
-                                          class: {
-                                            "is-invalid": _vm.editForm.errors.has(
-                                              "company"
-                                            )
-                                          },
-                                          attrs: { id: "updateCompany" },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.editForm.company,
-                                                "id",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
-                                          }
-                                        },
-                                        _vm._l(_vm.companies, function(
-                                          company
+                            _c("div", { staticClass: "col-md-8" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.trim",
+                                      value: _vm.editForm.company.id,
+                                      expression: "editForm.company.id",
+                                      modifiers: { trim: true }
+                                    }
+                                  ],
+                                  staticClass: "custom-select",
+                                  class: {
+                                    "is-invalid": _vm.editForm.errors.has(
+                                      "company"
+                                    )
+                                  },
+                                  attrs: { id: "Company" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
                                         ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: company.id,
-                                              domProps: { value: company.id }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(company.companies_name)
-                                              )
-                                            ]
-                                          )
-                                        }),
-                                        0
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.editForm.company,
+                                        "id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
                                       )
-                                    ]
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.editForm.company.id === null
-                                  ? [
-                                      _c(
-                                        "select",
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm.editForm.company.id === null
+                                    ? _c(
+                                        "option",
                                         {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.editForm.company.id,
-                                              expression: "editForm.company.id"
-                                            }
-                                          ],
-                                          staticClass: "custom-select",
-                                          class: {
-                                            "is-invalid": _vm.editForm.errors.has(
-                                              "company"
-                                            )
-                                          },
-                                          attrs: { id: "updateCompany" },
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.editForm.company,
-                                                "id",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
-                                            }
-                                          }
+                                          attrs: { value: "", selected: "" },
+                                          domProps: { value: null }
                                         },
-                                        [
-                                          _c(
-                                            "option",
-                                            {
-                                              attrs: {
-                                                value: "",
-                                                selected: ""
-                                              },
-                                              domProps: { value: null }
-                                            },
-                                            [_vm._v("Selecteer bedrijf..")]
-                                          ),
-                                          _vm._v(" "),
-                                          _vm._l(_vm.companies, function(
-                                            company
-                                          ) {
-                                            return _c(
-                                              "option",
-                                              {
-                                                key: company.id,
-                                                domProps: { value: company.id }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(company.companies_name)
-                                                )
-                                              ]
-                                            )
-                                          })
-                                        ],
-                                        2
+                                        [_vm._v("Selecteer bedrijf..")]
                                       )
-                                    ]
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.editForm.errors.has("company")
-                                  ? _c("div", {
-                                      staticClass: "invalid-feedback",
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          _vm.editForm.errors.get("company")
-                                        )
-                                      }
-                                    })
-                                  : _vm._e()
-                              ],
-                              2
-                            )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.companies, function(company) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: company.id,
+                                        domProps: { value: company.id }
+                                      },
+                                      [_vm._v(_vm._s(company.companies_name))]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.editForm.errors.has("company")
+                                ? _c("div", {
+                                    staticClass: "invalid-feedback",
+                                    domProps: {
+                                      textContent: _vm._s(
+                                        _vm.editForm.errors.get("company")
+                                      )
+                                    }
+                                  })
+                                : _vm._e()
+                            ])
                           ])
                         ],
                     _vm._v(" "),
@@ -6393,7 +6303,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group row invisible" }, [
+                    _c("div", { staticClass: "form-group row d-none" }, [
                       _c(
                         "label",
                         {
@@ -10500,6 +10410,8 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Errors */ "./resources/js/core/Errors.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -10546,12 +10458,15 @@ function () {
     /**
      * Reset the form fields.
      */
+    //TODO: itterate over nested object fields and reset them
 
   }, {
     key: "reset",
     value: function reset() {
       for (var field in this.originalData) {
-        this[field] = '';
+        if (_typeof(this[field]) === 'object') {} else {
+          this[field] = '';
+        }
       }
 
       this.errors.clear();

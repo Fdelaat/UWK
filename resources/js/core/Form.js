@@ -34,9 +34,15 @@ class Form {
     /**
      * Reset the form fields.
      */
+    //TODO: itterate over nested object fields and reset them
     reset() {
         for (let field in this.originalData) {
-            this[field] = '';
+            if (typeof this[field] === 'object') {
+
+            }
+            else {
+                this[field] = '';
+            }
         }
 
         this.errors.clear();

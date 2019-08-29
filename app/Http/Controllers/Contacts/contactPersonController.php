@@ -62,7 +62,7 @@ class contactPersonController extends Controller {
             'contactPeople_phoneNumber' => Request('phoneNumber'),
             'contactPeople_mobilePhoneNumber' => Request('mobilePhoneNumber'),
             'contactPeople_email' => Request('email'),
-            'company_id' => Request('company.id'),
+            'company_id' => Request('company'),
         ]);
         broadcast(new PersonSaved($contactPerson))->toOthers();
 

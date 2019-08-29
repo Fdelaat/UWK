@@ -114,7 +114,7 @@
                         </div>
 
                         <!-- Slug -->
-                        <div class="form-group row invisible">
+                        <div class="form-group row d-none">
                             <label for="slug-edit"  class="col-md-4 col-form-label">Slug</label>
                             <div class="col-md-8">
                                 <input type="text" id="slug-edit" name="slug" class="form-control" :class="{'is-invalid' : editForm.errors.has('slug')}" v-model.trim="editForm.slug" disabled>

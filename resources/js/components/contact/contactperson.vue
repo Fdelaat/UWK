@@ -198,19 +198,12 @@
                         </template>
                         <template v-else="createForm">
                         <div class="form-group row">
-                            <label for="updateCompany" class="col-md-4 col-form-label">Bedrijf</label>
+                            <label for="Company" class="col-md-4 col-form-label">Bedrijf</label>
                             <div class="col-md-8">
-                                <template v-if="editForm.company.id !== null">
-                                    <select  id="updateCompany" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model.trim="editForm.company.id">
+                                    <select  id="Company" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model.trim="editForm.company.id">
+                                        <option value="" :value="null" v-if="editForm.company.id === null" selected>Selecteer bedrijf..</option>
                                         <option v-for="company in companies" :value="company.id" :key="company.id">{{ company.companies_name }}</option>
                                     </select>
-                                </template>
-                                <template v-if="editForm.company.id === null">
-                                    <select  id="updateCompany" class="custom-select" :class="{'is-invalid' : editForm.errors.has('company')}" v-model="editForm.company.id">
-                                        <option value="" :value="null" selected >Selecteer bedrijf..</option>
-                                        <option v-for="company in companies" :value="company.id" :key="company.id">{{ company.companies_name }}</option>
-                                    </select>
-                                </template>
                                 <div class="invalid-feedback" v-if="editForm.errors.has('company')" v-text="editForm.errors.get('company')"></div>
                             </div>
                         </div>
@@ -267,7 +260,10 @@
                    phoneNumber: '',
                    mobilePhoneNumber: '',
                    email: '',
-                   company: {}
+                   company: {
+                       id: '',
+                       name: '',
+                   }
                }),
            };
        },
