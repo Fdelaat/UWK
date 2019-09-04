@@ -49,7 +49,7 @@
                                     <i class="fa fa-edit" aria-hidden="true" style="width: 20px"></i><span class="d-none d-lg-inline-block d-xl-inline-block">Edit</span>
                                 </button>
                                 <button class="btn btn-outline-danger btn-sm mb-1" role="button" @click="destroy(productgroup)">
-                                    <i class="fa fa-trash" aria-hidden="true" style="width: 20px"></i><span class="d-none d-lg-inline-block d-xl-inline-block">Delete</span>
+                                    <span class="d-none d-lg-inline-block d-xl-inline-block">Delete</span><i class="fa fa-trash" aria-hidden="true" style="width: 20px"></i>
                                 </button>
                             </span>
                             </td>
@@ -99,7 +99,7 @@
                         <div class="form-group row">
                             <label for="name-edit" class="col-md-4 col-form-label">Naam</label>
                             <div class="col-md-8">
-                                <input type="text" id="name-edit" name="name" class="form-control" :class="{'is-invalid' : editForm.errors.has('name')}" v-model.trim="editForm.name" required>
+                                <input type="text" id="name-edit" name="name" class="form-control" :class="{'is-invalid' : editForm.errors.has('name')}" v-model.trim="editForm.name">
                                 <div class="invalid-feedback" v-if="editForm.errors.has('name')" v-text="editForm.errors.get('name')"></div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                         <div class="form-group row">
                             <label for="description-edit" class="col-md-4 col-form-label">Omschrijving</label>
                             <div class="col-md-8">
-                                <input type="text" id="description-edit" name="description" class="form-control" :class="{'is-invalid' : editForm.errors.has('description')}" v-model.trim="editForm.description" required>
+                                <input type="text" id="description-edit" name="description" class="form-control" :class="{'is-invalid' : editForm.errors.has('description')}" v-model.trim="editForm.description">
                                 <div class="invalid-feedback" v-if="editForm.errors.has('description')" v-text="editForm.errors.get('description')"></div>
                             </div>
                         </div>
@@ -250,7 +250,12 @@
                         Event.$emit('alertApplied');
                         this.alertMessage = response.data.message;
                         this.alertType = response.data.type;
-                        this.getContactProductgroups();
+                        if (this.searchInput === ''){
+                            this.getContactProductgroups();
+                        }
+                        else {
+                            Event.$emit('contactProductgroups-searchClearInput');
+                        }
                     })
                     .catch(e => {
                         this.errors.push(e)
@@ -335,7 +340,12 @@
                             this.alertMessage = response.message;
                             this.alertType = response.type;
                             Event.$emit('alertApplied');
-                            this.getContactProductgroups();
+                            if (this.searchInput === ''){
+                                this.getContactProductgroups();
+                            }
+                            else {
+                                Event.$emit('contactProductgroups-searchClearInput');
+                            }
                         })
                         .catch(e => {
                             this.errors.push(e)
@@ -344,7 +354,13 @@
 
             },
 
-            moveOnEnter() {
+            moveOnEnter(e) {
+                if (e.shiftKey){
+                    $.focusPrev();
+                }
+                else{
+                    $.focusNext();
+                }
             }
         }
     }

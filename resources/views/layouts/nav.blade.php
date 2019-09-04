@@ -17,11 +17,11 @@
                             <a class="nav-link" href="{{ route('projecten.index') }}"> <i class="fa fa-university" style="width: 22px;" aria-hidden="true"></i>Projecten</a>
                         </li>
                          <li class="nav-item dropdown" id="main">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdownContacts" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa fa-folder" style="width: 22px;" aria-hidden="true"></i>Contacten <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('bedrijven.index') }}"> <i class="fa fa-university" style="width: 22px;" aria-hidden="true"></i>Bedrijven</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('contactpersonen.index') }}"><i class="far fa-address-card" style="width: 24px;" aria-hidden="true"></i>Contactpersonen</a>
@@ -40,7 +40,7 @@
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdownUser" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="far fa-user-circle" style="width: 22px;" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 

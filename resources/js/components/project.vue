@@ -25,13 +25,13 @@
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 float-left">
                                 <h5 class="font-weight-bold py-1 my-0">Projecten</h5>
                             </div>
-                            <div class="col-xs-8 col-xs-offset-0 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1">
-                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" placeholder="Filter op project...">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary btn-sm float-right" type="button" disabled="disabled">Filter!</button>
-                                        </span>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
+                                <div class="form-group row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="input-group input-group-sm rounded">
+                                        <input type="text" class="form-control" placeholder="Filter op project..." aria-describedby="search-project">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-sm float-right" id="search-project" type="button" disabled><i class="fas fa-search" aria-hidden="true" style="width: 20px"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -405,7 +405,13 @@
                 }
             },
 
-            moveOnEnter() {
+            moveOnEnter(e) {
+                if (e.shiftKey){
+                    $.focusPrev();
+                }
+                else{
+                    $.focusNext();
+                }
             }
         }
     }

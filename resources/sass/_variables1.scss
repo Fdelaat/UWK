@@ -53,6 +53,14 @@ $font-size-base: 0.9375rem !default;
 $dropdown-link-color:            $black !default;
 $dropdown-link-hover-color:      $white !default;
 $dropdown-link-hover-bg:         $primary !default;
+.dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
 
 // Navbar ======================================================================
 

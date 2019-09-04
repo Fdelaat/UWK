@@ -55,7 +55,7 @@
                                         <i class="fa fa-edit" aria-hidden="true" style="width: 22px"></i><span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block d-xl-inline-block">Edit</span>
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-1" role="button" @click="destroy(company)">
-                                        <i class="fa fa-trash" aria-hidden="true" style="width: 22px"></i><span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block d-xl-inline-block">Delete</span>
+                                        <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block d-xl-inline-block">Delete</span><i class="fa fa-trash" aria-hidden="true" style="width: 20px"></i>
                                     </button>
                                 </span>
                             </div>
@@ -360,7 +360,12 @@
                         this.alertMessage = response.data.message;
                         this.alertType = response.data.type;
                         Event.$emit('alertApplied');
-                        this.getCompanies();
+                        if (this.searchInput === ''){
+                            this.getCompanies();
+                        }
+                        else {
+                            Event.$emit('contactCompany-searchClearInput');
+                        }
                     })
                     .catch(e => {
                         this.errors.push(e)
@@ -451,7 +456,12 @@
                             this.alertMessage = response.message;
                             this.alertType = response.type;
                             Event.$emit('alertApplied');
-                            this.getCompanies();
+                            if (this.searchInput === ''){
+                                this.getCompanies();
+                            }
+                            else {
+                                Event.$emit('contactCompany-searchClearInput');
+                            }
                         })
                 }
             },
@@ -460,7 +470,13 @@
                 return ('mailto:' + emailAdress)
             },
 
-            moveOnEnter() {
+            moveOnEnter(e) {
+                if (e.shiftKey){
+                    $.focusPrev();
+                }
+                else{
+                    $.focusNext();
+                }
             },
         }
     }

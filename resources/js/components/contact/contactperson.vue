@@ -67,7 +67,7 @@
                                     <i class="fa fa-edit" aria-hidden="true" style="width: 20px"></i><span class="d-none d-lg-inline-block d-xl-inline-block">Edit</span>
                                 </button>
                                 <button class="btn btn-outline-danger btn-sm mb-1" role="button" @click="destroy(contactperson)">
-                                    <i class="fa fa-trash" aria-hidden="true" style="width: 20px"></i><span class="d-none d-lg-inline-block d-xl-inline-block">Delete</span>
+                                    <span class="d-none d-lg-inline-block d-xl-inline-block">Delete</span><i class="fa fa-trash" aria-hidden="true" style="width: 20px"></i>
                                 </button>
                             </span>
                             </td>
@@ -132,7 +132,7 @@
                         <div class="form-group row">
                             <label for="firstName" class="col-md-4 col-form-label">Voornaam</label>
                             <div class="col-md-8">
-                                <input type="text" id="firstName" name="firstName" class="form-control" :class="{'is-invalid' : editForm.errors.has('firstName')}" v-model.trim="editForm.firstName" required>
+                                <input type="text" id="firstName" name="firstName" class="form-control" :class="{'is-invalid' : editForm.errors.has('firstName')}" v-model.trim="editForm.firstName">
                                 <div class="invalid-feedback" v-if="editForm.errors.has('firstName')" v-text="editForm.errors.get('firstName')"></div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                         <div class="form-group row">
                             <label for="lastName" class="col-md-4 col-form-label">Achternaam</label>
                             <div class="col-md-8">
-                                <input type="text" id="lastName" name="lastName" class="form-control" :class="{'is-invalid' : editForm.errors.has('lastName')}" v-model.trim="editForm.lastName" required>
+                                <input type="text" id="lastName" name="lastName" class="form-control" :class="{'is-invalid' : editForm.errors.has('lastName')}" v-model.trim="editForm.lastName">
                                 <div class="invalid-feedback" v-if="editForm.errors.has('lastName')" v-text="editForm.errors.get('lastName')"></div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label">Email Adres</label>
                             <div class="col-md-8">
-                                <input type="text" id="email" name="email" class="form-control" :class="{'is-invalid' : editForm.errors.has('email')}" v-model.trim="editForm.email" required>
+                                <input type="text" id="email" name="email" class="form-control" :class="{'is-invalid' : editForm.errors.has('email')}" v-model.trim="editForm.email">
                                 <div class="invalid-feedback" v-if="editForm.errors.has('email')" v-text="editForm.errors.get('email')"></div>
                             </div>
 
@@ -368,7 +368,12 @@
                        Event.$emit('alertApplied');
                        this.alertMessage = response.data.message;
                        this.alertType = response.data.type;
-                       this.getContactpersons();
+                       if (this.searchInput === ''){
+                           this.getContactpersons();
+                       }
+                       else {
+                           Event.$emit('contactPerson-searchClearInput');
+                       }
                    })
                    .catch(e => {
                        this.errors.push(e)
@@ -453,7 +458,12 @@
                             this.alertMessage = response.message;
                             this.alertType = response.type;
                             Event.$emit('alertApplied');
-                            this.getContactpersons();
+                            if (this.searchInput === ''){
+                                this.getContactpersons();
+                            }
+                            else {
+                                Event.$emit('contactPerson-searchClearInput');
+                            }
                         })
                        .catch(e => {
                            this.errors.push(e)
@@ -465,9 +475,15 @@
                return ('mailto:' + emailAdress)
            },
 
-           moveOnEnter() {
+           moveOnEnter(e) {
+               if (e.shiftKey){
+                   $.focusPrev();
+               }
+               else{
+                   $.focusNext();
+               }
+           },
 
-           }
        },
 
     }
